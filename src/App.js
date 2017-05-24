@@ -5,13 +5,12 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      code: '// Your code here...',
+      code: '',
       result: ''
     }
   }
   evalText (e) {
     e.preventDefault()
-    console.log('submit')
     this.setState({ result: eval(this.state.code) })
   }
   changeCode (code) {
@@ -27,6 +26,7 @@ class App extends React.Component {
             cols='30'
             rows='10'
             value={this.state.code}
+            placeholder={'// Your code here...'}
             onChange={(e) => this.changeCode(e.target.value)}
           />
           <button>Run</button>
