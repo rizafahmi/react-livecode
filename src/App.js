@@ -1,3 +1,4 @@
+/* global localStorage */
 import React from 'react'
 
 class App extends React.Component {
@@ -17,6 +18,27 @@ class App extends React.Component {
     this.setState({
       code
     })
+    setInterval(() => {
+      this.saveCode()
+    }, 500)
+  }
+  saveCode () {
+    localStorage.setItem('code', JSON.stringify(this.state.code))
+  }
+  loadCode () {
+    const code = JSON.parse(localStorage.getItem('code') || '')
+    this.setState({
+      code
+    })
+  }
+  saveResult () {
+
+  }
+  loadResult () {
+
+  }
+  componentDidMount () {
+    this.loadCode()
   }
   render () {
     return (
