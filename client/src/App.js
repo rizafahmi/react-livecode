@@ -1,5 +1,6 @@
 /* global localStorage */
 import React from 'react'
+import Gun from 'gun'
 
 class App extends React.Component {
   constructor (props) {
