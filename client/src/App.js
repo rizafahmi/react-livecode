@@ -2,9 +2,13 @@
 import React from 'react'
 import Gun from 'gun'
 
+const GUN_SERVER = 'http://localhost:8080/gun'
+
 class App extends React.Component {
   constructor (props) {
     super(props)
+
+    this.gun = Gun([ GUN_SERVER ])
 
     this.state = {
       code: '',
@@ -24,13 +28,12 @@ class App extends React.Component {
     }, 500)
   }
   saveCode () {
-    localStorage.setItem('code', JSON.stringify(this.state.code))
+    // localStorage.setItem('code', JSON.stringify(this.state.code))
+    this.gun.get('livecode').put({ code: this.state.code })
   }
   loadCode () {
-    const code = JSON.parse(localStorage.getItem('code') || '')
-    this.setState({
-      code
-    })
+    const code = this.gun.get('livecode')
+    console.log(code.get('code').val())
   }
   saveResult () {
 
